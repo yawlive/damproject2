@@ -1,3 +1,4 @@
+import 'package:damproject/OnboardingScreens.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Navigate to the HomePage after 3 seconds
     Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => GetStartedPage()),
+        MaterialPageRoute(builder: (context) => OnboardingScreens()),
       );
     });
   }
