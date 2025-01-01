@@ -424,7 +424,7 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
             children: menu.map((menuitem) {
               return _buildMenuItem(
                 menuitem['Item']??'loading',
-                menuitem['Price']??'loading',
+                menuitem['é']??'loading',
                 menuitem['Description']??'loading',
               );
             }).toList(),

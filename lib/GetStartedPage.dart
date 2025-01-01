@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '/home/HomePage.dart';
 import 'package:http/http.dart' as http;
+import 'navigation/BasePage.dart';
 import 'user/userprovider.dart';
 import 'dart:convert';
 
@@ -201,19 +202,20 @@ class _GetStartedPageState extends State<GetStartedPage> {
             ),
             SizedBox(height: 24),
             GestureDetector(
-              onTap: () async{
-
+              onTap: () async {
                 String region = cleanRegionText(regioncontroller.text);
                 await fetchRestaurants(region);
-                print('Message after fetch: $message');
                 if (message == '') {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage(region: region , restaurants: restaurants, )),
+                    MaterialPageRoute(
+                      builder: (context) => BasePage(
+                        region: region,
+                        restaurants: restaurants,
+                      ),
+                    ),
                   );
                 }
-
-
               },
               child: Container(
                 width: 90,

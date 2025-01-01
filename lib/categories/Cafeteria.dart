@@ -378,6 +378,9 @@ class _CafeteriaState extends State<Cafeteria> {
                   );
                 },
               ),
+
+
+              SizedBox(height: 80,),
             ],
           ),
         )

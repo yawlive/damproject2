@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
+
   final List<IconData> icons = [
     Icons.format_align_center,
     Icons.brunch_dining_rounded,
@@ -64,6 +65,7 @@ class _HomePageState extends State<HomePage> {
     Icons.rice_bowl,
     Icons.local_pizza_rounded,
   ];
+
 
   final List<String> texticon = [
     "all",
@@ -78,6 +80,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
      // backgroundColor: Colors.amber[50],
       backgroundColor: Colors.white,
@@ -90,69 +94,79 @@ class _HomePageState extends State<HomePage> {
 
 
           Container(
-            margin: EdgeInsets.all( 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(27),
+                bottomRight: Radius.circular(27),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            padding: EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.location_pin, color: Colors.amber,),
-                    SizedBox(width: 10,),
+                    Icon(Icons.location_pin, color: Colors.amber),
+                    SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.region
-                          , style: GoogleFonts.poppins(),),
-                        Text("Exact location of the user", style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        )),
+                        Text(
+                          widget.region,
+                          style: GoogleFonts.poppins(),
+                        ),
+                        Text(
+                          "Exact location of the user",
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
-
-                // SizedBox(width: 100,),
                 IconButton(
                   onPressed: () {
-                    if(Provider.of<userprovider>(context ,listen: false).email=='') {
+                    if (Provider.of<userprovider>(context, listen: false).email == '') {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Loginscreen()),
                       );
-                    }else{
+                    } else {
                       Navigator.push(
                         context,
-                       MaterialPageRoute(builder: (context) => GetStartedPage(),
-                      ),
+                        MaterialPageRoute(builder: (context) => GetStartedPage()),
                       );
                     }
                   },
                   icon: Icon(Icons.account_circle),
                   iconSize: 30,
-                  color: Colors.black
-                  ,
+                  color: Colors.black,
                 ),
-                IconButton(onPressed: (){
-                  Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=> Favorite()))
-                  ;
-                },
-                    icon: Icon(Icons.favorite),
-                       iconSize: 30,
-                       color: Colors.black,)
-
               ],
             ),
-
           ),
-          SizedBox(height: 15,),
+
+          SizedBox(height: 25,),
 
           CarouselSlider(
             items: [
 
               //1st Image of Slider
               Container(
+
+                height: 200,
+                width: 450,
 
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
@@ -167,6 +181,11 @@ class _HomePageState extends State<HomePage> {
 
               //2nd Image of Slider
               Container(
+
+                height: 200,
+                width: 450,
+
+
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   color: Colors.lightGreen[300],
@@ -180,6 +199,13 @@ class _HomePageState extends State<HomePage> {
 
               //3rd Image of Slider
               Container(
+
+
+                height: 200,
+                width: 450,
+
+
+
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   color: Colors.lightGreen[300],
@@ -193,6 +219,14 @@ class _HomePageState extends State<HomePage> {
 
               //4th Image of Slider
               Container(
+
+
+
+                height: 200,
+                width: 450,
+
+
+
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   color: Colors.lightGreen[300],
@@ -341,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                               Icon(
                                 icons[index],
                                 size: 37,
-                                color: Colors.amber,/////////////////////////////////////
+                                color: Colors.amber[200],/////////////////////////////////////
 
                               ),
                               SizedBox(height: 2),
@@ -887,7 +921,7 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: 15,),
           RestaurantPicks( restaurants: widget.restaurants,),
-          SizedBox(height: 25,),
+          SizedBox(height: 80,),
 
 
 

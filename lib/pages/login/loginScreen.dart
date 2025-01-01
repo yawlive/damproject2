@@ -238,6 +238,7 @@ class _LoginformState extends State<Loginform> {
                 ),
               ),
             ),
+            SizedBox(height: 80,),
           ],
         ),
       ),

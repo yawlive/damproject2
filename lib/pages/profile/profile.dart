@@ -17,12 +17,10 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(LineAwesomeIcons.angle_double_left),
-        ),
+
+
+       //////////////////// modified here //////////////////////////////////
+
         title: Text(
           "Your Profile",
           style: GoogleFonts.poppins(
@@ -155,6 +153,9 @@ class ProfilePage extends StatelessWidget {
                 endIcon: true,
                 textcolor: Colors.pink,
               ),
+
+
+              SizedBox(height: 80,),
             ],
           ),
         ),

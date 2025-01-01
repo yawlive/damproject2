@@ -126,13 +126,15 @@ class _FineDiningState extends State<FineDining> {
                 children: [
                   /////////////////////////////////////////// filter//////////////////////////////////////////////////////////////////////////
                   ElevatedButton(
-                    onPressed: null,
+                    onPressed: (){},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber[50],
-                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.amber[200],
+                      foregroundColor: Colors.black87,
                       elevation: 2,
+
                     ),
                     child: PopupMenuButton<int>(
+                      offset: Offset(5, 32),
                       onSelected: (value) {
 
                         if (value ==1) {
@@ -153,10 +155,9 @@ class _FineDiningState extends State<FineDining> {
                             }).toList();
                           });
 
-                        } if( value==3){
+                        }else if( value==3){
                           restaurants =originalRestaurants;
                           setState(() {
-
                             restaurants= restaurants.where((restaurant) {
                               return restaurant['priceRange'] == 3;
                             }).toList();
@@ -172,24 +173,31 @@ class _FineDiningState extends State<FineDining> {
                       itemBuilder: (context) => [
                         PopupMenuItem(
                           value: 0,
-                          child: Text('All'),
+                          child: Text('All' , style: GoogleFonts.poppins(),),
                         ),
                         PopupMenuItem(
                           value: 3,
-                          child: Text('Expensive'),
+                          child: Text('Expensive' , style: GoogleFonts.poppins(),),
                         ),
                         PopupMenuItem(
                           value: 2,
-                          child: Text('Affordable'),
+                          child: Text('Affordable' , style: GoogleFonts.poppins(),),
                         ),
                         PopupMenuItem(
                           value: 1,
-                          child: Text('Economical'),
+                          child: Text('Economical', style: GoogleFonts.poppins(),),
                         ),
                       ],
+                      /////here kayn style
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      color: Colors.amber[50],
+                      padding: EdgeInsets.symmetric(vertical: 8),
+
+
                       child: Row(
                         children: [
-                          Text('Filter' ),
+                          Text('Filter' , style: GoogleFonts.poppins(),),
                           Icon(Icons.arrow_drop_down),
 
                         ],
@@ -200,13 +208,14 @@ class _FineDiningState extends State<FineDining> {
 
                   // Sort
                   ElevatedButton(
-                    onPressed: null,
+                    onPressed: (){},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber[50],
-                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.amber[200],
+                      foregroundColor: Colors.black87,
                       elevation: 2,
                     ),
                     child: PopupMenuButton<String>(
+                      offset: Offset(5, 32),
                       onSelected: (value) {
 
                         if (value == 'name') {
@@ -224,16 +233,21 @@ class _FineDiningState extends State<FineDining> {
                       itemBuilder: (context) => [
                         PopupMenuItem(
                           value: 'name',
-                          child: Text('By Name'),
+                          child: Text('By Name', style: GoogleFonts.poppins(),),
                         ),
                         PopupMenuItem(
                           value: 'ratings',
-                          child: Text('By Ratings'),
+                          child: Text('By Ratings', style: GoogleFonts.poppins(),),
                         ),
                       ],
+                      ////here kayn style
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      color: Colors.amber[50],
+                      padding: EdgeInsets.symmetric(vertical: 8),
                       child: Row(
                         children: [
-                          Text('Sort' ),
+                          Text('Sort' , style: GoogleFonts.poppins(),),
                           Icon(Icons.arrow_drop_down),
 
                         ],
@@ -338,7 +352,7 @@ class _FineDiningState extends State<FineDining> {
                                           SizedBox(width: 15,),
                                           Container(
                                             height: 27,
-                                            width: 80,
+                                            width: 100,
                                             decoration: BoxDecoration(
                                               color: Colors.amber[50],
                                               borderRadius: BorderRadius.circular(10),
@@ -347,7 +361,7 @@ class _FineDiningState extends State<FineDining> {
                                               child: Text(
                                                   restaurant['CategoryName'],
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 15,
+                                                    fontSize: 13,
 
                                                   )
                                               ),
@@ -375,6 +389,9 @@ class _FineDiningState extends State<FineDining> {
                   );
                 },
               ),
+
+
+              SizedBox(height: 80,),
             ],
           ),
         )

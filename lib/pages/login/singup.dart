@@ -232,6 +232,10 @@ class _SingupState extends State<Singup> {
                     ),
                   ),
                 ),
+
+
+
+                SizedBox(height: 80,),
               ],
             ),
           ),
