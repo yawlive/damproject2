@@ -54,15 +54,10 @@ class _AllState extends State<All> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-
-
           child: Column(
-
             children: [
-              // SizedBox(height: 17,),
               Container(
-
-                decoration:    BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -74,8 +69,6 @@ class _AllState extends State<All> {
                   ],
                   borderRadius: BorderRadius.circular(8),
                 ),
-
-
                 child: Stack(
                   children: [
                     // Image container
@@ -87,7 +80,6 @@ class _AllState extends State<All> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
-                          // image: DecorationImage(image: AssetImage("assets/images/grillsheader.png"), fit: BoxFit.cover,),
                         ),
                       ),
                     ),
@@ -98,24 +90,47 @@ class _AllState extends State<All> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
                                 "All Restaurants",
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 30,
-                                )
+                                ),
+                              ),
                             ),
-                            Text('in your city',  style: GoogleFonts.poppins(
-                              //fontWeight: FontWeight.w00,
-                              //fontSize: 30,
-                            )
-                            )
+                            Container(
+                              margin: EdgeInsets.only(left: 18,),
+                              child: Text(
+                                'in your city',
+                                style: GoogleFonts.poppins(),
+                              ),
+                            ),
                           ],
+                        ),
+                      ),
+                    ),
+                    // Back button
+                    Positioned(
+                      left: 5,
+                      top: 40,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: Colors.black87,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),

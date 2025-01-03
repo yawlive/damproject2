@@ -45,78 +45,94 @@ class _GrillsPageState extends State<GrillsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-
-
-        child: Column(
-
-          children: [
-           // SizedBox(height: 17,),
-            Container(
-
-             decoration:    BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    spreadRadius: 0,
-                    offset: Offset(0, 5), 
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(8),
-              ),
-
-
-              child: Stack(
-                children: [
-                  // Image container
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      height: 150,
-                      width: 500,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/grillsheader.png"),
-                          fit: BoxFit.cover,
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                      spreadRadius: 0,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    // Image container
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        height: 150,
+                        width: 500,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/grillsheader.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  // Text container
-                  Positioned(
-                    left: 20,
-                    bottom: 40,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      decoration: BoxDecoration(
-
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Grills",
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 30,
-                            )
-                          ),
-                          Text('in your city',  style: GoogleFonts.poppins(
-                            //fontWeight: FontWeight.w00,
-                            //fontSize: 30,
-                          )
-                          )
-                        ],
+                    // Text container
+                    Positioned(
+                      left: 20,
+                      bottom: 40,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left:20),
+                              child: Text(
+                                "Grills",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left:20),
+                              child: Text(
+                                'in your city',
+                                style: GoogleFonts.poppins(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    // Back button
+                    Positioned(
+                      left: 5,
+                      top: 40,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: Colors.black87,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
             SizedBox(
               height: 34,

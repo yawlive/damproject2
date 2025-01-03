@@ -216,7 +216,9 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                               backgroundColor: Colors.white,
                               child: IconButton(
                                 icon: Icon(Icons.arrow_back, color: Colors.lime[800]),
-                                onPressed: () { },
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
 
                               ),
                             ),

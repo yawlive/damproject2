@@ -5,38 +5,36 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../home/FavoritesProvider.dart';
 import '../details/RestaurantDetailPage.dart';
+
 class FineDining extends StatefulWidget {
-  final String region ;
-  FineDining({ required this.region});
+  final String region;
+  FineDining({required this.region});
   @override
   State<FineDining> createState() => _FineDiningState();
 }
 
 class _FineDiningState extends State<FineDining> {
-  List restaurants=[];
-  List originalRestaurants=[];
-  String category='Fine Dining';
+  List restaurants = [];
+  List originalRestaurants = [];
+  String category = 'Fine Dining';
+
   void initState() {
     super.initState();
     fetchRestaurants(widget.region);
   }
 
   Future<void> fetchRestaurants(String region) async {
-
     var response = await http.get(Uri.parse(
         "http://192.168.56.1/damproject/getRestaurants.php?region=$region&category=$category"));
 
     if (response.statusCode == 200) {
-
-     setState(() {
-       restaurants= jsonDecode(response.body);
-       originalRestaurants = jsonDecode(response.body);
-     });
-
+      setState(() {
+        restaurants = jsonDecode(response.body);
+        originalRestaurants = jsonDecode(response.body);
+      });
     } else {
       print('Request failed with status: ${response.statusCode}');
     }
-
   }
 
   @override
@@ -44,15 +42,10 @@ class _FineDiningState extends State<FineDining> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-
-
           child: Column(
-
             children: [
-              // SizedBox(height: 17,),
               Container(
-
-                decoration:    BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -64,11 +57,9 @@ class _FineDiningState extends State<FineDining> {
                   ],
                   borderRadius: BorderRadius.circular(8),
                 ),
-
-
                 child: Stack(
                   children: [
-                    // Image container
+                    // Image container (moved to back)
                     Align(
                       alignment: Alignment.centerRight,
                       child: Container(
@@ -83,33 +74,55 @@ class _FineDiningState extends State<FineDining> {
                         ),
                       ),
                     ),
-                    // Text container
+                    // Text container (in middle)
                     Positioned(
                       left: 20,
                       bottom: 40,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
                           children: [
-                            Text(
-                                "Fine Dining",
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 30,
-                                )
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
+                                  "Fine Dining",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 30,
+                                  )
+                              ),
                             ),
-                            Text('in your city',  style: GoogleFonts.poppins(
-                              //fontWeight: FontWeight.w00,
-                              //fontSize: 30,
-                            )
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
+                                  'in your city',
+                                  style: GoogleFonts.poppins()
+                              ),
                             )
                           ],
                         ),
                       ),
+                    ),
+
+                    Positioned(
+                      left: 5,
+                      top: 40,
+                      child:  GestureDetector(
+                        onTap: () {
+                             Navigator.pop(context);
+                                   },
+                                child: Padding(
+                             padding: EdgeInsets.all(8),
+                                    child: Icon(
+                                       Icons.arrow_back_ios_rounded,
+                                        color: Colors.black87,
+                                      size: 20,
+                                          ),
+                              ),
+                       ),
                     ),
                   ],
                 ),

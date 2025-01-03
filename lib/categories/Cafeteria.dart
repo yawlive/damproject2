@@ -47,15 +47,10 @@ class _CafeteriaState extends State<Cafeteria> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-
-
           child: Column(
-
             children: [
-              // SizedBox(height: 17,),
               Container(
-
-                decoration:    BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -67,8 +62,6 @@ class _CafeteriaState extends State<Cafeteria> {
                   ],
                   borderRadius: BorderRadius.circular(8),
                 ),
-
-
                 child: Stack(
                   children: [
                     // Image container
@@ -93,24 +86,47 @@ class _CafeteriaState extends State<Cafeteria> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
                                 "Cafeterias",
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 30,
-                                )
+                                ),
+                              ),
                             ),
-                            Text('in your city',  style: GoogleFonts.poppins(
-                              //fontWeight: FontWeight.w00,
-                              //fontSize: 30,
-                            )
-                            )
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
+                                'in your city',
+                                style: GoogleFonts.poppins(),
+                              ),
+                            ),
                           ],
+                        ),
+                      ),
+                    ),
+                    // Back button
+                    Positioned(
+                      left: 5,
+                      top: 40,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: Colors.black87,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),

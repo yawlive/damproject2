@@ -20,97 +20,58 @@ class BasePage extends StatefulWidget {
 
 class _BasePageState extends State<BasePage> {
   int _selectedIndex = 0;
-  final List<GlobalKey<NavigatorState>> _navigatorKeys = [
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-  ];
+  late List<Widget> _pages;
 
-  Widget _buildPageNavigator(int index) {
-    return Navigator(
-      key: _navigatorKeys[index],
-      onGenerateRoute: (settings) {
-        Widget page;
-        switch (index) {
-          case 0:
-            page = HomePage(region: widget.region, restaurants: widget.restaurants);
-            break;
-          case 1:
-            page =  Favorite();
-            break;
-          case 2:
-            page =  ProfilePage();
-            break;
-          default:
-            page = HomePage(region: widget.region, restaurants: widget.restaurants);
-        }
-        return MaterialPageRoute(builder: (context) => page);
-      },
-    );
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      HomePage(region: widget.region, restaurants: widget.restaurants),
+      Favorite(),
+      ProfilePage(),
+    ];
   }
 
   void _onItemTapped(int index) {
-    if (index == _selectedIndex) {
-      _navigatorKeys[index].currentState?.popUntil((route) => route.isFirst);
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-        !await _navigatorKeys[_selectedIndex].currentState!.maybePop();
-        if (isFirstRouteInCurrentTab) {
-          if (_selectedIndex != 0) {
-            _onItemTapped(0);
-            return false;
-          }
-        }
-        return isFirstRouteInCurrentTab;
-      },
-      child: Scaffold(
-        body: Stack(
-          children: [
-            IndexedStack(
-              index: _selectedIndex,
-              children: List.generate(3, (index) => _buildPageNavigator(index)),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 7,
-              right: 7,
-              child: Container(
-                height: 55,
-              //  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  //borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
-                    _buildNavItem(1, Icons.favorite_border_outlined, Icons.favorite, 'Favorites'),
-                    _buildNavItem(2, Icons.person_outline, Icons.person, 'Profile'),
-                  ],
-                ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          _pages[_selectedIndex],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 58,
+              margin: const EdgeInsets.only(bottom: 8, left: 7, right: 7),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
+                  _buildNavItem(1, Icons.favorite_border_outlined, Icons.favorite, 'Favorites'),
+                  _buildNavItem(2, Icons.person_outline, Icons.person, 'Profile'),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
